@@ -185,7 +185,7 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
         switch section {
         case 0:
             let projectListHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-            projectListHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.4)
+            projectListHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.2)
             
             let label = UILabel(frame: CGRect(x: halfWidth, y: 0, width: 150, height: 50))
             label.text = "통과한 과제 목록"
@@ -198,7 +198,7 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
             return projectListHeaderView
         case 1:
             let evaluatingLogHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-             evaluatingLogHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.4)
+             evaluatingLogHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.2)
             let label = UILabel(frame: CGRect(x: halfWidth, y: 0, width: 150, height: 50))
             label.text = "평가한 내역"
             label.textColor = .white
@@ -210,7 +210,7 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
             return evaluatingLogHeaderView
         case 2:
             let evaluatedLogHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-             evaluatedLogHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.4)
+             evaluatedLogHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.2)
             let label = UILabel(frame: CGRect(x: halfWidth, y: 0, width: 150, height: 50))
             label.text = "평가받은 내역"
             label.textColor = .white
@@ -222,7 +222,7 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
             return evaluatedLogHeaderView
         case 3:
             let piscineLogHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
-             piscineLogHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.4)
+             piscineLogHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.2)
             let label = UILabel(frame: CGRect(x: halfWidth, y: 0, width: 150, height: 50))
             label.text = "Piscine"
             label.textColor = .white

@@ -23,6 +23,8 @@ class DetailEvaluatedViewController: UIViewController {
 
         self.logTableView.delegate = self
         self.logTableView.dataSource = self
+        
+        self.logTableView.backgroundColor = UIColor(patternImage: UIImage(named: "gon_cover_resize")!)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -54,15 +56,58 @@ class DetailEvaluatedViewController: UIViewController {
         }
         getEvaluatedAPIDataTask.resume()
     }
+    
 }
 
 extension DetailEvaluatedViewController: UITableViewDataSource, UITableViewDelegate {
     
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 500
+        return UITableView.automaticDimension
     }
     
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300
+    }
+
+     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+         switch section {
+         case 0:
+             let topCellHeaderView = UIView()
+             topCellHeaderView.backgroundColor = UIColor(white: 1, alpha: 0)
+             return topCellHeaderView
+         default:
+             return UIView()
+         }
+     }
+     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+         switch section {
+         case 0:
+             return 7
+         default:
+             return 0
+         }
+     }
+     
+     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+                 switch section {
+         case 0:
+             let topCellHeaderView = UIView()
+             topCellHeaderView.backgroundColor = UIColor(white: 1, alpha: 0)
+             return topCellHeaderView
+         default:
+             return UIView()
+         }
+     }
+     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+         switch section {
+          case 0:
+              return 7
+          default:
+              return 0
+          }
+     }
+     
     func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -78,25 +123,23 @@ extension DetailEvaluatedViewController: UITableViewDataSource, UITableViewDeleg
         case 0:
             guard let cell: FeedbackGottenLogTableViewCell = self.logTableView.dequeueReusableCell(withIdentifier: "feedbackGottenLogCell") as? FeedbackGottenLogTableViewCell
                 else {return UITableViewCell()}
-            // 여러 줄이 나오도록 설정.
-            cell.feedbackLogUILabel.numberOfLines = 0
-            // 평가 코멘트 하나하나의 MaxWidth를 설정.
-            let bounds = UIScreen.main.bounds
-            let width = bounds.width
-            cell.feedbackLogUILabel.preferredMaxLayoutWidth = width - 50
+            cell.feedbackLogUILabel?.text = "\(intraId) 님께서 평가받은 내역"
+            cell.backgroundColor = UIColor(white: 1, alpha: 0.25)
+            cell.feedbackLogUILabel.textColor = .white
             return cell
         case 1:
             guard let evaluatedLogCell: EvaluatedLogTableViewCell = tableView.dequeueReusableCell(withIdentifier: "evaluatedLogCell") as? EvaluatedLogTableViewCell
                 else {
                     print("can't get EvaluatedLogCell")
                     return UITableViewCell()}
-            print("flag")
-                evaluatedLogCell.commentUILabel?.text = "reply: " + self.correctedLogs[indexPath.row].comment
+                evaluatedLogCell.commentUILabel?.text = "평가자:  " + self.correctedLogs[indexPath.row].comment
                 evaluatedLogCell.commentUILabel.lineBreakMode = .byWordWrapping
                 evaluatedLogCell.commentUILabel.preferredMaxLayoutWidth = screenWidth
-                evaluatedLogCell.feedbackUILabel.text = "\(intraId): " + self.correctedLogs[indexPath.row].feedback
+                evaluatedLogCell.feedbackUILabel.text = "\(intraId):  " + self.correctedLogs[indexPath.row].feedback
                 evaluatedLogCell.feedbackUILabel.lineBreakMode = .byWordWrapping
                 evaluatedLogCell.feedbackUILabel.preferredMaxLayoutWidth = screenWidth
+                evaluatedLogCell.backgroundColor = UIColor(white: 1, alpha: 0.75)
+
                 return evaluatedLogCell
         default:
             return UITableViewCell()
@@ -106,8 +149,6 @@ extension DetailEvaluatedViewController: UITableViewDataSource, UITableViewDeleg
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
-        case 0:
-            return 1
         case 1:
             let count = self.correctedLogs.count
             return count

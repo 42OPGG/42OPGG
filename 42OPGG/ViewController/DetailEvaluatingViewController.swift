@@ -25,10 +25,6 @@ class DetailEvaluatingViewController: UIViewController {
         self.logTableView.dataSource = self
         
         self.logTableView.backgroundColor = UIColor(patternImage: UIImage(named: "gon_cover_resize")!)
-        
-//
-//        self.logTableView.estimatedRowHeight = 150
-//        self.logTableView.rowHeight = UITableView.automaticDimension
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -129,8 +125,9 @@ extension DetailEvaluatingViewController: UITableViewDelegate, UITableViewDataSo
                     print("gettingFeedbackLogTableViewCell made error")
                 return UITableViewCell()
             }
-            // 여러 줄이 나오도록 설정.
             cell.feedbackLogUILabel?.text = "\(intraId) 님께서 평가한 내역"
+            cell.backgroundColor = UIColor(white: 1, alpha: 0.25)
+            cell.feedbackLogUILabel.textColor = .white
             return cell
         case 1:
             guard let evaluatingLogCell: EvaluatingLogTableViewCell = tableView.dequeueReusableCell(withIdentifier: "evaluatingLogCell") as? EvaluatingLogTableViewCell
@@ -141,6 +138,8 @@ extension DetailEvaluatingViewController: UITableViewDelegate, UITableViewDataSo
             evaluatingLogCell.feedbackUILabel.text = "피평가자:  " + self.correctorLogs[indexPath.row].feedback
             evaluatingLogCell.feedbackUILabel.lineBreakMode = .byWordWrapping
             evaluatingLogCell.feedbackUILabel.preferredMaxLayoutWidth = screenWidth
+            // 배경화면 투명하게
+            evaluatingLogCell.backgroundColor = UIColor(white: 1, alpha: 0.75)
                 return evaluatingLogCell
         default:
             return UITableViewCell()

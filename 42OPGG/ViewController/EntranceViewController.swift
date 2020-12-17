@@ -13,12 +13,38 @@ class EntranceViewController: UIViewController {
     @IBOutlet weak var intraIdUITextField: UITextField!
     @IBOutlet weak var goToNextViewControllerUIButton: UIButton!
     @IBOutlet weak var checkIfSearchableUIButton: UIButton!
+    
+    var piscineData: PiscineAPIResponse?
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //self.goToNextViewControllerUIButton.isEnabled = false
+        let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+        backgroundImage.image = UIImage(named: "opgg_cover")
+        backgroundImage.contentMode =  UIView.ContentMode.scaleToFill
+        self.view.insertSubview(backgroundImage, at: 0)
+        self.goToNextViewControllerUIButton.isEnabled = false
+        
+        Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkSearchable(timer:)), userInfo: nil, repeats: true)
+        
+        self.intraIdUITextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
     }
+    
+    @objc func checkSearchable(timer: Timer) {
+        guard let piscineData = self.piscineData
+            else {return}
+        print("piscineData.success =\(piscineData.success)")
+        if piscineData.success == "true" {
+            self.goToNextViewControllerUIButton.isEnabled = true
+        }
+    }
+    
+    @objc func textFieldDidChange(_ sender: Any?) {
+        self.piscineData = nil
+        self.goToNextViewControllerUIButton.isEnabled = false
+    }
+    
+    
+
     
     @IBAction func touchUpSearchButton(_ sender: UIButton) {
         UserInformation.shared.id = self.intraIdUITextField?.text
@@ -43,7 +69,7 @@ class EntranceViewController: UIViewController {
                 })
             }
 
-        }
+    }
     
     @IBAction func touchUpCheckButton(_ sender: UIButton) {
         
@@ -55,7 +81,7 @@ class EntranceViewController: UIViewController {
         guard let intraId = self.intraIdUITextField.text
             else {return}
         
-        guard let getPiscineAPIurl: URL = URL(string: "http://api.jiduckche.com:5000/api/piscine/" + intraId)
+        guard let getPiscineAPIurl: URL = URL(string: "https://api.jiduckche.com/api/piscine/" + intraId)
              else {return}
          let getPiscineAPISession: URLSession = URLSession(configuration: .default)
          let getPiscineAPIDataTask: URLSessionDataTask = getPiscineAPISession.dataTask(with: getPiscineAPIurl) {
@@ -69,14 +95,10 @@ class EntranceViewController: UIViewController {
              do {
                  let apiResponse: PiscineAPIResponse = try JSONDecoder().decode(PiscineAPIResponse.self, from: data)
                 print("apiResponse.success: \(apiResponse.success)")
+                self.piscineData = apiResponse
                  if apiResponse.success == "false" {
                      self.showAlertController(reason: "해당 id로 조회할 수 있는 사람이 없습니다.")
-                 } else {
-                    DispatchQueue.main.async {
-                        self.goToNextViewControllerUIButton.isEnabled = true
-                        self.intraIdUITextField.isUserInteractionEnabled = true
-                    }
-                }
+                 }
 
              } catch (let err) {
                 self.showAlertController(reason: "해당 id로 조회할 수 있는 사람이 없습니다.")
