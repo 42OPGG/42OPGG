@@ -31,7 +31,7 @@ class DetailEvaluatedViewController: UIViewController {
         guard let intraId: String = UserInformation.shared.id
             else {return}
         
-        guard let getEvaluatedAPIurl: URL = URL(string: "http://api.jiduckche.com:5000/api/corrected/" + intraId + "/15")
+        guard let getEvaluatedAPIurl: URL = URL(string: "https://api.jiduckche.com/api/corrected/" + intraId + "/15")
             else {return}
         let getEvaluatedAPISession: URLSession = URLSession(configuration: .default)
         let getEvaluatedAPIDataTask: URLSessionDataTask = getEvaluatedAPISession.dataTask(with: getEvaluatedAPIurl) {

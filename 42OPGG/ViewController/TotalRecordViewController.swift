@@ -260,10 +260,8 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
         switch section {
         case 3:
             return 0
-        case 1:
-            return 0
         default:
-            return 5
+            return 0
         }
     }
     
@@ -319,12 +317,13 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
         case 1:
             guard let headerOfEvaluatingLogCell: EvaluatingHeaderTableViewCell = tableView.dequeueReusableCell(withIdentifier: "headerEvaluatingCell") as? EvaluatingHeaderTableViewCell
                 else {return UITableViewCell()}
-
+            headerOfEvaluatingLogCell.backgroundColor = UIColor(white: 1, alpha: 0.75)
             return headerOfEvaluatingLogCell
 
         case 2:
             guard let headerOfEvaluatedLogCell: EvaluatedHeaderTableViewCell = tableView.dequeueReusableCell(withIdentifier: "headerEvaluatedCell") as? EvaluatedHeaderTableViewCell
                 else {return UITableViewCell()}
+            headerOfEvaluatedLogCell.backgroundColor = UIColor(white: 1, alpha: 0.75)
 
             return headerOfEvaluatedLogCell
 
@@ -344,6 +343,11 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
             }
             piscineLogCell.levelUILabel?.text = String(level)
             piscineLogCell.finalScoreUILabel?.text = String(finalScore) + " / 100"
+            
+            // cell 배경 투명하게
+            piscineLogCell.backgroundColor = UIColor(white: 1, alpha: 0.75)
+            piscineLogCell.levelUILabel.backgroundColor = .yellow
+            
             return piscineLogCell
         default:
             print("default case is called")

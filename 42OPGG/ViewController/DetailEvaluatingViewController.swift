@@ -23,6 +23,12 @@ class DetailEvaluatingViewController: UIViewController {
         
         self.logTableView.delegate = self
         self.logTableView.dataSource = self
+        
+        self.logTableView.backgroundColor = UIColor(patternImage: UIImage(named: "gon_cover_resize")!)
+        
+//
+//        self.logTableView.estimatedRowHeight = 150
+//        self.logTableView.rowHeight = UITableView.automaticDimension
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -31,7 +37,7 @@ class DetailEvaluatingViewController: UIViewController {
         guard let intraId = UserInformation.shared.id
             else {return}
         
-        guard let getEvaluatingAPIurl: URL = URL(string: "http://api.jiduckche.com:5000/api/corrector/" + intraId + "/15")
+        guard let getEvaluatingAPIurl: URL = URL(string: "https://api.jiduckche.com/api/corrector/" + intraId + "/15")
             else {return}
     
             let getEvaluatingAPISession: URLSession = URLSession(configuration: .default)
@@ -60,6 +66,55 @@ class DetailEvaluatingViewController: UIViewController {
 }
 
 extension DetailEvaluatingViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableView.automaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch section {
+        case 0:
+            let topCellHeaderView = UIView()
+            topCellHeaderView.backgroundColor = UIColor(white: 1, alpha: 0)
+            return topCellHeaderView
+        default:
+            return UIView()
+        }
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 7
+        default:
+            return 0
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+                switch section {
+        case 0:
+            let topCellHeaderView = UIView()
+            topCellHeaderView.backgroundColor = UIColor(white: 1, alpha: 0)
+            return topCellHeaderView
+        default:
+            return UIView()
+        }
+    }
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        switch section {
+         case 0:
+             return 7
+         default:
+             return 0
+         }
+    }
+    
+    
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         guard let intraId: String = UserInformation.shared.id
@@ -75,33 +130,20 @@ extension DetailEvaluatingViewController: UITableViewDelegate, UITableViewDataSo
                 return UITableViewCell()
             }
             // 여러 줄이 나오도록 설정.
-            cell.feedbackLogUILabel.numberOfLines = 0
-            // 평가 코멘트 하나하나의 MaxWidth를 설정.
-            let bounds = UIScreen.main.bounds
-            let width = bounds.width
-            cell.feedbackLogUILabel.preferredMaxLayoutWidth = width - 50
+            cell.feedbackLogUILabel?.text = "\(intraId) 님께서 평가한 내역"
             return cell
         case 1:
             guard let evaluatingLogCell: EvaluatingLogTableViewCell = tableView.dequeueReusableCell(withIdentifier: "evaluatingLogCell") as? EvaluatingLogTableViewCell
             else {return UITableViewCell()}
-            evaluatingLogCell.commentUILabel?.text = "\(intraId): " + self.correctorLogs[indexPath.row].comment
+            evaluatingLogCell.commentUILabel?.text = "\(intraId):  " + self.correctorLogs[indexPath.row].comment
             evaluatingLogCell.commentUILabel.lineBreakMode = .byWordWrapping
             evaluatingLogCell.commentUILabel.preferredMaxLayoutWidth = screenWidth
-            evaluatingLogCell.feedbackUILabel.text = "reply: " + self.correctorLogs[indexPath.row].feedback
+            evaluatingLogCell.feedbackUILabel.text = "피평가자:  " + self.correctorLogs[indexPath.row].feedback
             evaluatingLogCell.feedbackUILabel.lineBreakMode = .byWordWrapping
             evaluatingLogCell.feedbackUILabel.preferredMaxLayoutWidth = screenWidth
                 return evaluatingLogCell
         default:
             return UITableViewCell()
-        }
-    }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.section {
-        case 0:
-            return 50
-        default:
-            return 300
         }
     }
     
