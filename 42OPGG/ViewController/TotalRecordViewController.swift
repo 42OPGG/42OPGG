@@ -55,7 +55,7 @@ class TotalRecordViewController: UIViewController {
         guard let intraId = UserInformation.shared.id
             else {return}
         
-        guard let getProjectAPIurl: URL = URL(string: "http://api.jiduckche.com/api/subject/" + intraId)
+        guard let getProjectAPIurl: URL = URL(string: "https://api.jiduckche.com/api/subject/" + intraId)
             else {return}
         
         let getProjectAPISession: URLSession = URLSession(configuration: .default)
@@ -80,7 +80,7 @@ class TotalRecordViewController: UIViewController {
             }
         }
 
-        guard let getPiscineAPIurl: URL = URL(string: "http://api.jiduckche.com/api/piscine/" + intraId)
+        guard let getPiscineAPIurl: URL = URL(string: "https://api.jiduckche.com/api/piscine/" + intraId)
             else {return}
         let getPiscineAPISession: URLSession = URLSession(configuration: .default)
         let getPiscineAPIDataTask: URLSessionDataTask = getPiscineAPISession.dataTask(with: getPiscineAPIurl) {
@@ -156,27 +156,11 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
             let count = self.projects.count
             print("self.projects.count = \(self.projects.count)")
             return count
-//        case 2:
-//            let count = self.correctorLogs.count
-//            print("self.correctorLogs.count = \(self.correctorLogs.count)")
-//            return count
-//        case 4:
-//            let count = self.correctedLogs.count
-//            return count
         default:
             return 1
         }
     }
 
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//
-//        switch section {
-//        case 0: return "통과한 과제 목록"
-//        case 3: return "Piscine Level / Final Score"
-//        default: return ""
-//        }
-//    }
-    
     // MARK: Header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
@@ -300,9 +284,6 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        // api list
-        guard let intraId: String = UserInformation.shared.id
-            else {return UITableViewCell()}
         switch indexPath.section {
         case 0:
             guard let projectLogCell: ProjectLogTableViewCell = tableView.dequeueReusableCell(withIdentifier: "projectLogCell") as? ProjectLogTableViewCell
