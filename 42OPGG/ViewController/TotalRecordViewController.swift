@@ -24,14 +24,18 @@ class TotalRecordViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.totalRecordTableView.backgroundColor = UIColor(patternImage: UIImage(named: "gon_cover_resize")!)
+        
         self.totalRecordTableView.delegate = self
         self.totalRecordTableView.dataSource = self
+        
         guard let intraId = UserInformation.shared.id
             else {
                 print("intra id is null")
                 return
         }
         self.navigationItem.title = intraId
+        
     }
     
     @objc func didReceiveProjectsNotification(_ noti: Notification) {
@@ -51,7 +55,7 @@ class TotalRecordViewController: UIViewController {
         guard let intraId = UserInformation.shared.id
             else {return}
         
-        guard let getProjectAPIurl: URL = URL(string: "http://api.jiduckche.com:5000/api/subject/" + intraId)
+        guard let getProjectAPIurl: URL = URL(string: "http://api.jiduckche.com/api/subject/" + intraId)
             else {return}
         
         let getProjectAPISession: URLSession = URLSession(configuration: .default)
@@ -76,7 +80,7 @@ class TotalRecordViewController: UIViewController {
             }
         }
 
-        guard let getPiscineAPIurl: URL = URL(string: "http://api.jiduckche.com:5000/api/piscine/" + intraId)
+        guard let getPiscineAPIurl: URL = URL(string: "http://api.jiduckche.com/api/piscine/" + intraId)
             else {return}
         let getPiscineAPISession: URLSession = URLSession(configuration: .default)
         let getPiscineAPIDataTask: URLSessionDataTask = getPiscineAPISession.dataTask(with: getPiscineAPIurl) {
@@ -164,27 +168,129 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
         }
     }
 
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//
+//        switch section {
+//        case 0: return "통과한 과제 목록"
+//        case 3: return "Piscine Level / Final Score"
+//        default: return ""
+//        }
+//    }
+    
+    // MARK: Header
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
+        let halfWidth = UIScreen.main.bounds.width / 2
+        
         switch section {
-        case 0: return "통과한 과제"
-        case 1: return "1"
-        case 2: return "2"
-        case 3: return "3"
-        case 4: return "4"
-        case 5: return "피신 Level/Final Exam"
-        default: return "error"
+        case 0:
+            let projectListHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+            projectListHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.4)
+            
+            let label = UILabel(frame: CGRect(x: halfWidth, y: 0, width: 150, height: 50))
+            label.text = "통과한 과제 목록"
+            label.textColor = .white
+            label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+            label.textAlignment = .center
+            label.center.x = self.view.center.x
+            projectListHeaderView.addSubview(label)
+            
+            return projectListHeaderView
+        case 1:
+            let evaluatingLogHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+             evaluatingLogHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.4)
+            let label = UILabel(frame: CGRect(x: halfWidth, y: 0, width: 150, height: 50))
+            label.text = "평가한 내역"
+            label.textColor = .white
+            label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+            label.textAlignment = .center
+            label.center.x = self.view.center.x
+            evaluatingLogHeaderView.addSubview(label)
+            
+            return evaluatingLogHeaderView
+        case 2:
+            let evaluatedLogHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+             evaluatedLogHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.4)
+            let label = UILabel(frame: CGRect(x: halfWidth, y: 0, width: 150, height: 50))
+            label.text = "평가받은 내역"
+            label.textColor = .white
+            label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+            label.textAlignment = .center
+            label.center.x = self.view.center.x
+            evaluatedLogHeaderView.addSubview(label)
+            
+            return evaluatedLogHeaderView
+        case 3:
+            let piscineLogHeaderView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 100))
+             piscineLogHeaderView.backgroundColor = UIColor(white: 1, alpha: 0.4)
+            let label = UILabel(frame: CGRect(x: halfWidth, y: 0, width: 150, height: 50))
+            label.text = "Piscine"
+            label.textColor = .white
+            label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
+            label.textAlignment = .center
+            label.center.x = self.view.center.x
+            piscineLogHeaderView.addSubview(label)
+            
+            return piscineLogHeaderView
+        default:
+            return UIView()
         }
     }
 
+    // Header Height 설정
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch section {
+        case 0:
+            return 50
+        case 1:
+            return 50
+        case 2:
+            return 50
+        case 3:
+            return 50
+        default:
+            return 0
+        }
+    }
+    
+
+    
+    // MARK: Footer
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        switch section {
+        case 3:
+            return 0
+        case 1:
+            return 0
+        default:
+            return 5
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section != 3 {
+            let eachFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 20))
+            eachFooterView.backgroundColor = UIColor(white: 1, alpha: 0)
+            return eachFooterView
+        } else {
+            let eachFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 200, height: 0))
+             eachFooterView.backgroundColor = UIColor(white: 1, alpha: 0)
+             return eachFooterView
+        }
+       
+    }
+    
+    
+    // MARK: section Height 설정
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
          if indexPath.section == 0 {
              return UITableView.automaticDimension
          } else if indexPath.section == 1 {
-             return UITableView.automaticDimension
+             return 50
          } else if indexPath.section == 2 {
-            return 100
+            return 50
          } else if indexPath.section == 3 {
-             return 100
+             return 150
          } else {
              return UITableView.automaticDimension
          }
@@ -207,19 +313,22 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
             projectLogCell.projectNameUILabel?.text = projects[indexPath.row]
             // 구분선 없앰.
             projectLogCell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: UIScreen.main.bounds.width)
+            // 배경 투명도
+            projectLogCell.backgroundColor = UIColor(white: 1, alpha: 0.75)
             return projectLogCell
         case 1:
             guard let headerOfEvaluatingLogCell: EvaluatingHeaderTableViewCell = tableView.dequeueReusableCell(withIdentifier: "headerEvaluatingCell") as? EvaluatingHeaderTableViewCell
                 else {return UITableViewCell()}
+
             return headerOfEvaluatingLogCell
 
-        case 3:
+        case 2:
             guard let headerOfEvaluatedLogCell: EvaluatedHeaderTableViewCell = tableView.dequeueReusableCell(withIdentifier: "headerEvaluatedCell") as? EvaluatedHeaderTableViewCell
                 else {return UITableViewCell()}
-            
+
             return headerOfEvaluatedLogCell
 
-        case 5:
+        case 3:
             guard let piscineLogCell: PiscineLogTableViewCell = tableView.dequeueReusableCell(withIdentifier: "piscineLogCell") as? PiscineLogTableViewCell
                 else {return UITableViewCell()}
             
@@ -234,7 +343,7 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
                     return UITableViewCell()
             }
             piscineLogCell.levelUILabel?.text = String(level)
-            piscineLogCell.finalScoreUILabel?.text = String(finalScore)
+            piscineLogCell.finalScoreUILabel?.text = String(finalScore) + " / 100"
             return piscineLogCell
         default:
             print("default case is called")

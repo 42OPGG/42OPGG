@@ -17,7 +17,7 @@ class EntranceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.goToNextViewControllerUIButton.isEnabled = false
+        //self.goToNextViewControllerUIButton.isEnabled = false
     }
     
     @IBAction func touchUpSearchButton(_ sender: UIButton) {

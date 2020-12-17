@@ -85,7 +85,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UyM-zv-idT">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="UyM-zv-idT">
                                 <rect key="frame" x="0.0" y="56" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
@@ -120,15 +120,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="21Z-hN-3Cr">
-                                                    <rect key="frame" x="335" y="14" width="49" height="30"/>
-                                                    <state key="normal" title="More &gt;"/>
+                                                    <rect key="frame" x="304" y="14" width="100" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="IRq-8i-wkX"/>
+                                                    </constraints>
+                                                    <state key="normal" title="보러가기 &gt;"/>
                                                     <connections>
                                                         <action selector="touchUpShowMoreEvaluatingLogButton:" destination="6YN-Jf-PhY" eventType="touchUpInside" id="q3H-Db-t0v"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="21Z-hN-3Cr" secondAttribute="trailing" constant="30" id="6sG-LP-iF7"/>
+                                                <constraint firstAttribute="trailing" secondItem="21Z-hN-3Cr" secondAttribute="trailing" constant="10" id="6sG-LP-iF7"/>
                                                 <constraint firstItem="21Z-hN-3Cr" firstAttribute="centerY" secondItem="v48-ur-rdy" secondAttribute="centerY" id="QJd-Sz-hrJ"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -141,15 +144,18 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cYN-ZL-nOa">
-                                                    <rect key="frame" x="335" y="13.5" width="49" height="30"/>
-                                                    <state key="normal" title="More &gt;"/>
+                                                    <rect key="frame" x="304" y="13.5" width="100" height="30"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="100" id="v7O-RZ-RtC"/>
+                                                    </constraints>
+                                                    <state key="normal" title="보러가기 &gt;"/>
                                                     <connections>
                                                         <action selector="touchUpShowMoreEvaluatedLogButton:" destination="6YN-Jf-PhY" eventType="touchUpInside" id="xpY-Ks-AGa"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="cYN-ZL-nOa" secondAttribute="trailing" constant="30" id="8G8-wH-au8"/>
+                                                <constraint firstAttribute="trailing" secondItem="cYN-ZL-nOa" secondAttribute="trailing" constant="10" id="8G8-wH-au8"/>
                                                 <constraint firstItem="cYN-ZL-nOa" firstAttribute="centerY" secondItem="bXo-SK-fIa" secondAttribute="centerY" id="ZY6-fu-DlP"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -161,8 +167,8 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="178"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGI-rf-mu8">
-                                                    <rect key="frame" x="40" y="31" width="150" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Level" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lGI-rf-mu8">
+                                                    <rect key="frame" x="40" y="31" width="150" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="KiY-GZ-hwG"/>
                                                     </constraints>
@@ -171,7 +177,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 / 100" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Kt-3W-dVV">
-                                                    <rect key="frame" x="224" y="81.5" width="150" height="21"/>
+                                                    <rect key="frame" x="224" y="82" width="150" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="E6k-C5-lpy"/>
                                                     </constraints>
@@ -180,7 +186,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2SX-jh-jCj">
-                                                    <rect key="frame" x="40" y="81.5" width="150" height="21"/>
+                                                    <rect key="frame" x="40" y="82" width="150" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="0NZ-Tc-lLE"/>
                                                     </constraints>
@@ -188,8 +194,8 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="final exam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoq-6G-LX7">
-                                                    <rect key="frame" x="224" y="31" width="150" height="20.5"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Final Exam" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yoq-6G-LX7">
+                                                    <rect key="frame" x="224" y="31" width="150" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="150" id="4CB-vh-QsC"/>
                                                     </constraints>
@@ -217,7 +223,6 @@
                                 </prototypes>
                             </tableView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="H5j-CI-r6d" firstAttribute="bottom" secondItem="UyM-zv-idT" secondAttribute="bottom" id="CCx-PN-DfQ"/>
                             <constraint firstItem="UyM-zv-idT" firstAttribute="top" secondItem="H5j-CI-r6d" secondAttribute="top" id="NFN-as-plY"/>

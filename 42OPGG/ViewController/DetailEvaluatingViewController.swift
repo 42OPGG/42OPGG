@@ -97,7 +97,12 @@ extension DetailEvaluatingViewController: UITableViewDelegate, UITableViewDataSo
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 500
+        switch indexPath.section {
+        case 0:
+            return 50
+        default:
+            return 300
+        }
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
