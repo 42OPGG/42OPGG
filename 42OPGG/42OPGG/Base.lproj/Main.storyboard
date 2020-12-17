@@ -10,7 +10,7 @@
         <!--Entrance View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="EntranceViewController" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="EntranceViewController" customModule="_2OPGG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -29,40 +29,58 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bra-Z5-z84">
-                                <rect key="frame" x="175.5" y="477" width="63" height="34"/>
-                                <state key="normal" title="조회하기">
-                                    <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="touchUpSearchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jsO-91-9fr"/>
-                                    <segue destination="yNf-h2-h9o" kind="show" id="S35-sN-YyF"/>
-                                </connections>
-                            </button>
+                            <stackView opaque="NO" contentMode="scaleToFill" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="gvn-fj-b06">
+                                <rect key="frame" x="127.5" y="467" width="159" height="34"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWN-uj-vPM">
+                                        <rect key="frame" x="0.0" y="0.0" width="63" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="조회하기"/>
+                                        <connections>
+                                            <action selector="touchUpCheckButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Zpz-kU-Cv0"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bra-Z5-z84">
+                                        <rect key="frame" x="127" y="0.0" width="32" height="34"/>
+                                        <state key="normal" title="검색">
+                                            <color key="titleColor" systemColor="systemBlueColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <state key="disabled">
+                                            <color key="titleColor" cocoaTouchSystemColor="scrollViewTexturedBackgroundColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="touchUpSearchButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jsO-91-9fr"/>
+                                            <segue destination="yNf-h2-h9o" kind="show" id="S35-sN-YyF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="Bra-Z5-z84" firstAttribute="top" secondItem="imZ-bS-z4O" secondAttribute="bottom" constant="30" id="6YO-Ce-FJR"/>
+                            <constraint firstItem="gvn-fj-b06" firstAttribute="top" secondItem="imZ-bS-z4O" secondAttribute="bottom" constant="20" id="1rK-sv-Qj2"/>
+                            <constraint firstItem="gvn-fj-b06" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4BA-O0-yW4"/>
                             <constraint firstItem="imZ-bS-z4O" firstAttribute="top" secondItem="PSA-AY-4J9" secondAttribute="bottom" constant="50" id="Ksh-5n-BnN"/>
                             <constraint firstItem="imZ-bS-z4O" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LGA-XN-0lw"/>
                             <constraint firstItem="PSA-AY-4J9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="ORI-pD-0m8"/>
-                            <constraint firstItem="Bra-Z5-z84" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="aXu-xp-PRc"/>
                             <constraint firstItem="PSA-AY-4J9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rnK-P0-PJA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
+                        <outlet property="checkIfSearchableUIButton" destination="ZWN-uj-vPM" id="eUp-b7-d4u"/>
+                        <outlet property="goToNextViewControllerUIButton" destination="Bra-Z5-z84" id="XXM-7U-Emy"/>
                         <outlet property="intraIdUITextField" destination="imZ-bS-z4O" id="fha-bx-gxU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-14" y="120"/>
+            <point key="canvasLocation" x="-14.492753623188406" y="119.86607142857142"/>
         </scene>
         <!--intra Id님의 로그-->
         <scene sceneID="kvG-OG-amF">
             <objects>
-                <viewController storyboardIdentifier="totalRecordViewController" id="6YN-Jf-PhY" customClass="TotalRecordViewController" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="totalRecordViewController" id="6YN-Jf-PhY" customClass="TotalRecordViewController" customModule="_2OPGG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Kg2-O7-5tZ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -71,7 +89,7 @@
                                 <rect key="frame" x="0.0" y="56" width="414" height="752"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectLogCell" rowHeight="54" id="pHg-CU-iR1" customClass="ProjectLogTableViewCell" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="projectLogCell" rowHeight="54" id="pHg-CU-iR1" customClass="ProjectLogTableViewCell" customModule="_2OPGG" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pHg-CU-iR1" id="zA4-32-fJu">
@@ -94,7 +112,7 @@
                                             <outlet property="projectNameUILabel" destination="E57-zh-5RB" id="atF-is-9He"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerEvaluatingCell" rowHeight="58" id="szk-cb-Pal" customClass="EvaluatingHeaderTableViewCell" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerEvaluatingCell" rowHeight="58" id="szk-cb-Pal" customClass="EvaluatingHeaderTableViewCell" customModule="_2OPGG" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="82" width="414" height="58"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="szk-cb-Pal" id="v48-ur-rdy">
@@ -115,7 +133,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerEvaluatedCell" rowHeight="57" id="cNN-Rb-Lkd" customClass="EvaluatedHeaderTableViewCell" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerEvaluatedCell" rowHeight="57" id="cNN-Rb-Lkd" customClass="EvaluatedHeaderTableViewCell" customModule="_2OPGG" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="140" width="414" height="57"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cNN-Rb-Lkd" id="bXo-SK-fIa">
@@ -136,7 +154,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="piscineLogCell" rowHeight="178" id="tYt-ou-axV" customClass="PiscineLogTableViewCell" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="piscineLogCell" rowHeight="178" id="tYt-ou-axV" customClass="PiscineLogTableViewCell" customModule="_2OPGG" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="197" width="414" height="178"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tYt-ou-axV" id="EQa-JT-e9c">
@@ -227,7 +245,7 @@
         <!--Detail Evaluated View Controller-->
         <scene sceneID="gaG-Ow-Z5N">
             <objects>
-                <viewController storyboardIdentifier="detailEvaluatedViewController" id="C88-ra-FxD" customClass="DetailEvaluatedViewController" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailEvaluatedViewController" id="C88-ra-FxD" customClass="DetailEvaluatedViewController" customModule="_2OPGG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Q3o-FL-A4h">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -236,7 +254,7 @@
                                 <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedbackGottenLogCell" id="qPV-Ez-VPw" customClass="FeedbackGottenLogTableViewCell" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedbackGottenLogCell" id="qPV-Ez-VPw" customClass="FeedbackGottenLogTableViewCell" customModule="_2OPGG" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="qPV-Ez-VPw" id="nwD-VZ-xo7">
@@ -259,7 +277,7 @@
                                             <outlet property="feedbackLogUILabel" destination="Q2f-Cb-c5s" id="9ja-yM-iaH"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="evaluatedLogCell" rowHeight="123" id="OYF-1C-wlc" customClass="EvaluatedLogTableViewCell" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="evaluatedLogCell" rowHeight="123" id="OYF-1C-wlc" customClass="EvaluatedLogTableViewCell" customModule="_2OPGG" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="71.5" width="414" height="123"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="OYF-1C-wlc" id="qya-Wq-dxX">
@@ -331,6 +349,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yNf-h2-h9o" sceneMemberID="viewController">
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="FB3-ot-GDY"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="zwn-qq-soQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -348,7 +367,7 @@
         <!--Detail Evaluating View Controller-->
         <scene sceneID="1tZ-tI-zOQ">
             <objects>
-                <viewController storyboardIdentifier="detailEvaluatingViewController" id="LqG-1b-vaq" customClass="DetailEvaluatingViewController" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailEvaluatingViewController" id="LqG-1b-vaq" customClass="DetailEvaluatingViewController" customModule="_2OPGG" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="11c-2u-yWp">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -357,7 +376,7 @@
                                 <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedbackGivenLogCell" id="mYU-Tp-kKp" customClass="FeedbackGivenLogTableViewCell" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedbackGivenLogCell" id="mYU-Tp-kKp" customClass="FeedbackGivenLogTableViewCell" customModule="_2OPGG" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="mYU-Tp-kKp" id="yEh-zn-onO">
@@ -380,7 +399,7 @@
                                             <outlet property="feedbackLogUILabel" destination="1zs-Ng-12W" id="rar-wt-mrW"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="evaluatingLogCell" rowHeight="132" id="Zpl-Zr-sxY" customClass="EvaluatingLogTableViewCell" customModule="HellOfLaziness42SeoulHackathonGON" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="evaluatingLogCell" rowHeight="132" id="Zpl-Zr-sxY" customClass="EvaluatingLogTableViewCell" customModule="_2OPGG" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="71.5" width="414" height="132"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Zpl-Zr-sxY" id="4Vk-F5-Lj0">

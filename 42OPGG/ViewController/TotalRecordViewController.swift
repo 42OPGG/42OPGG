@@ -60,6 +60,7 @@ class TotalRecordViewController: UIViewController {
             (data: Data?, response: URLResponse?, error: Error?) in
             if let error = error {
                 print(error.localizedDescription)
+                self.showAlertController(reason: "can't get api")
                 return
             }
             guard let data = data
@@ -82,6 +83,7 @@ class TotalRecordViewController: UIViewController {
             (data: Data?, reponse: URLResponse?, error: Error?) in
             if let error = error {
                 print(error.localizedDescription)
+                self.showAlertController(reason: error.localizedDescription)
                 return
             }
             guard let data = data
@@ -89,6 +91,9 @@ class TotalRecordViewController: UIViewController {
             do {
                 let apiResponse: PiscineAPIResponse = try JSONDecoder().decode(PiscineAPIResponse.self, from: data)
                 self.piscineLog = apiResponse.data
+                if apiResponse.success == "false" {
+                    self.showAlertController(reason: "해당 id로 조회할 수 있는 사람이 없습니다.")
+                }
                 DispatchQueue.main.async {
                     self.totalRecordTableView.reloadData()
                 }
@@ -120,14 +125,20 @@ class TotalRecordViewController: UIViewController {
         
         let okAction: UIAlertAction
         okAction = UIAlertAction(title: "OK Action", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
-            self.dismiss(animated: true, completion: nil)
+            DispatchQueue.main.async {
+                
+                self.dismiss(animated: true, completion: nil)
+            }
         })
         
         alertController.addAction(okAction)
 
-        self.present(alertController, animated: true, completion: {
-            print("alert: \(reason)")
-        })
+        DispatchQueue.main.async {
+            self.present(alertController, animated: true, completion: {
+                print("alert: \(reason)")
+            })
+        }
+
     }
 }
 
@@ -171,13 +182,9 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
          } else if indexPath.section == 1 {
              return UITableView.automaticDimension
          } else if indexPath.section == 2 {
-             return 500
+            return 100
          } else if indexPath.section == 3 {
-             return UITableView.automaticDimension
-         } else if indexPath.section == 4 {
-             return 500
-         } else if indexPath.section == 5 {
-            return 300
+             return 100
          } else {
              return UITableView.automaticDimension
          }
@@ -185,7 +192,7 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
      
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 6
+        return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
