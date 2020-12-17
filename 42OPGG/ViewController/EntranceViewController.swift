@@ -21,6 +21,6 @@ class EntranceViewController: UIViewController {
     @IBAction func touchUpSearchButton(_ sender: UIButton) {
         UserInformation.shared.id = self.intraIdUITextField?.text
     }
-    
 
+    
 }

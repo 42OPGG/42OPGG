@@ -32,7 +32,6 @@ class TotalRecordViewController: UIViewController {
                 return
         }
         self.navigationItem.title = intraId
-        
     }
     
     @objc func didReceiveProjectsNotification(_ noti: Notification) {
@@ -56,6 +55,7 @@ class TotalRecordViewController: UIViewController {
             else {return}
         
         let getProjectAPISession: URLSession = URLSession(configuration: .default)
+        
         let getProjectAPIDataTask: URLSessionDataTask = getProjectAPISession.dataTask(with: getProjectAPIurl) {
             (data: Data?, response: URLResponse?, error: Error?) in
             if let error = error {
@@ -98,12 +98,8 @@ class TotalRecordViewController: UIViewController {
         }
         
             getProjectAPIDataTask.resume()
-//            getEvaluatingAPIDataTask.resume()
-//            getEvaluatedAPIDataTask.resume()
             getPiscineAPIDataTask.resume()
-
     }
-    
     
     @IBAction func touchUpShowMoreEvaluatingLogButton(_ sender: Any) {
            guard let nextViewController = self.storyboard?.instantiateViewController(withIdentifier: "detailEvaluatingViewController") as? DetailEvaluatingViewController
@@ -117,6 +113,22 @@ class TotalRecordViewController: UIViewController {
                else {return}
            self.present(nextViewController, animated: true)
        }
+    
+    func showAlertController(reason: String) {
+        let alertController: UIAlertController
+        alertController = UIAlertController(title: "Error", message: reason, preferredStyle: UIAlertController.Style.alert)
+        
+        let okAction: UIAlertAction
+        okAction = UIAlertAction(title: "OK Action", style: UIAlertAction.Style.default, handler: { (action: UIAlertAction) in
+            self.dismiss(animated: true, completion: nil)
+        })
+        
+        alertController.addAction(okAction)
+
+        self.present(alertController, animated: true, completion: {
+            print("alert: \(reason)")
+        })
+    }
 }
 
 
