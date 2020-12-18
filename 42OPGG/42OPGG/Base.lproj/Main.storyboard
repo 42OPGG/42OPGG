@@ -16,14 +16,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Intra Id" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSA-AY-4J9">
-                                <rect key="frame" x="119" y="169" width="82" height="30"/>
-                                <color key="backgroundColor" red="0.045774705708026886" green="0.088535107672214508" blue="0.12846127152442932" alpha="0.65355413732394363" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="119" y="269" width="82" height="30"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="25"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </label>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="imZ-bS-z4O">
-                                <rect key="frame" x="60" y="223" width="200" height="34"/>
+                                <rect key="frame" x="60" y="323" width="200" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="200" id="VcF-Fo-zsH"/>
                                 </constraints>
@@ -31,11 +31,11 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <stackView opaque="NO" contentMode="scaleToFill" spacing="64" translatesAutoresizingMaskIntoConstraints="NO" id="gvn-fj-b06">
-                                <rect key="frame" x="49" y="277" width="222" height="35"/>
+                                <rect key="frame" x="49" y="377" width="222" height="35"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZWN-uj-vPM">
                                         <rect key="frame" x="0.0" y="0.0" width="125" height="35"/>
-                                        <color key="backgroundColor" red="0.053980372846126556" green="0.11630500108003616" blue="0.16478946805000305" alpha="0.6468364017110475" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                         <state key="normal" title="조회가능여부확인">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -61,14 +61,36 @@
                                     </button>
                                 </subviews>
                             </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GG" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TG1-Iy-uJ9">
+                                <rect key="frame" x="60" y="111.5" width="200" height="119.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="EUM-db-br3"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="100"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="OP." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="38e-7H-fxn">
+                                <rect key="frame" x="44" y="13" width="250" height="119.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="250" id="DoO-5x-ZId"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="100"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="TG1-Iy-uJ9" firstAttribute="top" secondItem="38e-7H-fxn" secondAttribute="bottom" constant="-21" id="1m5-bA-voJ"/>
                             <constraint firstItem="gvn-fj-b06" firstAttribute="top" secondItem="imZ-bS-z4O" secondAttribute="bottom" constant="20" id="1rK-sv-Qj2"/>
                             <constraint firstItem="gvn-fj-b06" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="4BA-O0-yW4"/>
                             <constraint firstItem="imZ-bS-z4O" firstAttribute="top" secondItem="PSA-AY-4J9" secondAttribute="bottom" constant="24" id="Ksh-5n-BnN"/>
                             <constraint firstItem="imZ-bS-z4O" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="LGA-XN-0lw"/>
-                            <constraint firstItem="PSA-AY-4J9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" constant="-100" id="ORI-pD-0m8"/>
+                            <constraint firstItem="PSA-AY-4J9" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ORI-pD-0m8"/>
+                            <constraint firstItem="38e-7H-fxn" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="9" id="R2d-Nq-F6b"/>
+                            <constraint firstItem="PSA-AY-4J9" firstAttribute="top" secondItem="TG1-Iy-uJ9" secondAttribute="bottom" constant="38" id="bio-Yp-xV2"/>
+                            <constraint firstItem="TG1-Iy-uJ9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rAG-74-jTI"/>
                             <constraint firstItem="PSA-AY-4J9" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="rnK-P0-PJA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -81,7 +103,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-14.492753623188406" y="119.86607142857142"/>
+            <point key="canvasLocation" x="-15" y="119.36619718309859"/>
         </scene>
         <!--intra Id님의 로그-->
         <scene sceneID="kvG-OG-amF">

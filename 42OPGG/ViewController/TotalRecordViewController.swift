@@ -177,6 +177,7 @@ extension TotalRecordViewController: UITableViewDelegate, UITableViewDataSource 
             label.font = UIFont.boldSystemFont(ofSize: UIFont.labelFontSize)
             label.textAlignment = .center
             label.center.x = self.view.center.x
+
             projectListHeaderView.addSubview(label)
             
             return projectListHeaderView
