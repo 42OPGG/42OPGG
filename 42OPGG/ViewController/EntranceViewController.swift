@@ -19,7 +19,7 @@ class EntranceViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
-        backgroundImage.image = UIImage(named: "opgg_cover")
+        backgroundImage.image = UIImage(named: "gon_background")
         backgroundImage.contentMode =  UIView.ContentMode.scaleToFill
         self.view.insertSubview(backgroundImage, at: 0)
         self.goToNextViewControllerUIButton.isEnabled = false
