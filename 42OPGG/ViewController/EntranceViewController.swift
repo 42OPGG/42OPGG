@@ -74,7 +74,7 @@ class EntranceViewController: UIViewController {
     @IBAction func touchUpCheckButton(_ sender: UIButton) {
         
         if self.intraIdUITextField.text == "" {
-            self.showAlertController(reason: "인트라아이디를 입력하세요.")
+            self.showAlertController(reason: "인트라아이디를 입력해주세요")
             return
         }
         
