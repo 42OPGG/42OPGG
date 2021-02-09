@@ -85,4 +85,4 @@
 5. <strong>'통과한 과제 목록', 'Piscine Level' ,'Piscine Final Exam점수' </strong>가 나옵니다.
 6. <strong>'평가한 내역', '평가받은 내역'</strong> 은 <strong>'보러가기'</strong> 버튼을 누르면 창이 나옵니다. 최근 3개월, 15개의 내역이 나옵니다.
 
-* <a href="#"> 시연영상 보러가기🎥 </a>수정해야됨!
+* <a href="https://youtu.be/FgTvJVmrqZY"> 시연영상 보러가기🎥 </a>수정해야됨!
