@@ -15,9 +15,23 @@ class EntranceViewController: UIViewController {
     @IBOutlet weak var checkIfSearchableUIButton: UIButton!
     
     var piscineData: PiscineAPIResponse?
-        
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        // Create an indicator.
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.color = UIColor.red
+        // Also show the indicator even when the animation is stopped.
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.large
+        // Start animation.
+        activityIndicator.stopAnimating()
+        return activityIndicator
+    }()
+     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
         backgroundImage.image = UIImage(named: "gon_background")
         backgroundImage.contentMode =  UIView.ContentMode.scaleToFill
@@ -27,6 +41,9 @@ class EntranceViewController: UIViewController {
         Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkSearchable(timer:)), userInfo: nil, repeats: true)
         
         self.intraIdUITextField.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+        
+        // 로딩중 구현
+        self.view.addSubview(self.activityIndicator)
     }
     
     @objc func checkSearchable(timer: Timer) {
@@ -43,9 +60,6 @@ class EntranceViewController: UIViewController {
         self.goToNextViewControllerUIButton.isEnabled = false
     }
     
-    
-
-    
     @IBAction func touchUpSearchButton(_ sender: UIButton) {
         UserInformation.shared.id = self.intraIdUITextField?.text
     }
@@ -60,7 +74,7 @@ class EntranceViewController: UIViewController {
                     self.dismiss(animated: true, completion: nil)
                 }
             })
-            
+
             alertController.addAction(okAction)
 
             DispatchQueue.main.async {
@@ -68,7 +82,6 @@ class EntranceViewController: UIViewController {
                     print("alert: \(reason)")
                 })
             }
-
     }
     
     @IBAction func touchUpCheckButton(_ sender: UIButton) {
@@ -80,8 +93,11 @@ class EntranceViewController: UIViewController {
         
         guard let intraId = self.intraIdUITextField.text
             else {return}
+ 
+        // loading중..
+        activityIndicator.startAnimating()
         
-        guard let getPiscineAPIurl: URL = URL(string: "https://api.jiduckche.com/api/piscine/" + intraId)
+        guard let getPiscineAPIurl: URL = URL(string: "https://opggapi.herokuapp.com/api/piscine/" + intraId)
              else {return}
          let getPiscineAPISession: URLSession = URLSession(configuration: .default)
          let getPiscineAPIDataTask: URLSessionDataTask = getPiscineAPISession.dataTask(with: getPiscineAPIurl) {
@@ -96,15 +112,31 @@ class EntranceViewController: UIViewController {
                  let apiResponse: PiscineAPIResponse = try JSONDecoder().decode(PiscineAPIResponse.self, from: data)
                 print("apiResponse.success: \(apiResponse.success)")
                 self.piscineData = apiResponse
-                 if apiResponse.success == "false" {
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                }
+                if apiResponse.success == "false" {
                      self.showAlertController(reason: "해당 id로 조회할 수 있는 사람이 없습니다.")
                  }
-
              } catch (let err) {
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                }
                 self.showAlertController(reason: "해당 id로 조회할 수 있는 사람이 없습니다.")
                 print(err.localizedDescription)
              }
          }
         getPiscineAPIDataTask.resume()
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+         
+               let backgroundImage = UIImageView(frame: UIScreen.main.bounds)
+               backgroundImage.image = UIImage(named: "gon_background")
+               backgroundImage.contentMode =  UIView.ContentMode.scaleToFill
+               self.view.insertSubview(backgroundImage, at: 0)
+               self.goToNextViewControllerUIButton.isEnabled = false
+               
+               Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(checkSearchable(timer:)), userInfo: nil, repeats: true)
     }
 }

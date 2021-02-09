@@ -16,6 +16,21 @@ class TotalRecordViewController: UIViewController {
     var correctedLogs: [CorrectedLog] = []
     var piscineLog: PiscineLog?
     
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        // Create an indicator.
+        let activityIndicator = UIActivityIndicatorView()
+        activityIndicator.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        activityIndicator.center = self.view.center
+        activityIndicator.color = UIColor.red
+        // Also show the indicator even when the animation is stopped.
+        activityIndicator.hidesWhenStopped = true
+        activityIndicator.style = UIActivityIndicatorView.Style.large
+        // Start animation.
+        activityIndicator.stopAnimating()
+        return activityIndicator
+    }()
+    
+
     
     @IBAction func touchUpBackBarButtonItem(_ sender: UIBarButtonItem) {
          self.dismiss(animated: true, completion: nil)
@@ -23,6 +38,7 @@ class TotalRecordViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         
         self.totalRecordTableView.backgroundColor = UIColor(patternImage: UIImage(named: "gon_cover_resize")!)
         
@@ -35,7 +51,7 @@ class TotalRecordViewController: UIViewController {
                 return
         }
         self.navigationItem.title = intraId
-        
+        self.view.addSubview(self.activityIndicator)
     }
     
     @objc func didReceiveProjectsNotification(_ noti: Notification) {
@@ -55,13 +71,18 @@ class TotalRecordViewController: UIViewController {
         guard let intraId = UserInformation.shared.id
             else {return}
         
-        guard let getProjectAPIurl: URL = URL(string: "https://api.jiduckche.com/api/subject/" + intraId)
+        guard let getProjectAPIurl: URL = URL(string: "https://opggapi.herokuapp.com/api/subject/" + intraId)
             else {return}
         
         let getProjectAPISession: URLSession = URLSession(configuration: .default)
         
+        // loading 구현.
+        self.activityIndicator.startAnimating()
+        
+        
         let getProjectAPIDataTask: URLSessionDataTask = getProjectAPISession.dataTask(with: getProjectAPIurl) {
             (data: Data?, response: URLResponse?, error: Error?) in
+               
             if let error = error {
                 print(error.localizedDescription)
                 self.showAlertController(reason: "can't get api")
@@ -74,13 +95,19 @@ class TotalRecordViewController: UIViewController {
                 self.projects = apiResponse.data
                 DispatchQueue.main.async {
                     self.totalRecordTableView.reloadData()
+                    self.activityIndicator.stopAnimating()
                 }
             } catch (let err) {
+                DispatchQueue.main.async {
+                    self.activityIndicator.stopAnimating()
+                    self.showAlertController(reason: "can't get api")
+                    
+                }
                 print(err.localizedDescription)
             }
         }
 
-        guard let getPiscineAPIurl: URL = URL(string: "https://api.jiduckche.com/api/piscine/" + intraId)
+        guard let getPiscineAPIurl: URL = URL(string: "https://opggapi.herokuapp.com/api/piscine/" + intraId)
             else {return}
         let getPiscineAPISession: URLSession = URLSession(configuration: .default)
         let getPiscineAPIDataTask: URLSessionDataTask = getPiscineAPISession.dataTask(with: getPiscineAPIurl) {
