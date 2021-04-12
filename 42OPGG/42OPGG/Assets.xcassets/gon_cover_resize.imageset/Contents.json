@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "gon_cover_resize.png",
+      "filename" : "hackaton_image.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "gon_cover_resize-1.png",
+      "filename" : "hackaton_image-1.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "gon_cover_resize-2.png",
+      "filename" : "hackaton_image-2.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }

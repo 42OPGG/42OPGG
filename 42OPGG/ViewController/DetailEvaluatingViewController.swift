@@ -59,7 +59,15 @@ class DetailEvaluatingViewController: UIViewController {
         self.logTableView.delegate = self
         self.logTableView.dataSource = self
         
-        self.logTableView.backgroundColor = UIColor(patternImage: UIImage(named: "gon_cover_resize")!)
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "gon_cover_resize")?.draw(in: self.view.bounds)
+        guard let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        else {
+            print("getting image error!")
+            return
+        }
+        UIGraphicsEndImageContext()
+        self.logTableView.backgroundColor = UIColor(patternImage: image)
         
         // add loading code
         self.view.addSubview(self.activityIndicator)

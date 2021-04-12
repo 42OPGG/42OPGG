@@ -114,6 +114,8 @@
 		7A4B0518258A002A00B33314 /* TableViewCell */ = {
 			isa = PBXGroup;
 			children = (
+				7A4B052E258A975400B33314 /* FeedbackGivenLogTableViewCell.swift */,
+				7A4B052C258A969800B33314 /* FeedbackGottenLogTableViewCell.swift */,
 				7A4B05092589F1E300B33314 /* ProjectLogTableViewCell.swift */,
 				7A4B050B2589F20B00B33314 /* EvaluatingLogTableViewCell.swift */,
 				7A4B050D2589F21900B33314 /* EvaluatedLogTableViewCell.swift */,
@@ -131,8 +133,6 @@
 				7A4B05052589E84000B33314 /* TotalRecordViewController.swift */,
 				7A4B0526258A171B00B33314 /* DetailEvaluatingViewController.swift */,
 				7A4B0528258A172C00B33314 /* DetailEvaluatedViewController.swift */,
-				7A4B052C258A969800B33314 /* FeedbackGottenLogTableViewCell.swift */,
-				7A4B052E258A975400B33314 /* FeedbackGivenLogTableViewCell.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -384,6 +384,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kchoi.42OPGG;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -402,6 +403,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.kchoi.42OPGG;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

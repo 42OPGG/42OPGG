@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "opgg_cover.png",
+      "filename" : "hackaton_image.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "opgg_cover-1.png",
+      "filename" : "hackaton_image-1.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "opgg_cover-2.png",
+      "filename" : "hackaton_image-2.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }
