@@ -40,7 +40,15 @@ class TotalRecordViewController: UIViewController {
         super.viewDidLoad()
         
         
-        self.totalRecordTableView.backgroundColor = UIColor(patternImage: UIImage(named: "gon_cover_resize")!)
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        UIImage(named: "gon_cover_resize")?.draw(in: self.view.bounds)
+        guard let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()
+        else {
+            print("getting image error!")
+            return
+        }
+        UIGraphicsEndImageContext()
+        self.totalRecordTableView.backgroundColor = UIColor(patternImage: image)
         
         self.totalRecordTableView.delegate = self
         self.totalRecordTableView.dataSource = self
